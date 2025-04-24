@@ -1,0 +1,137 @@
+---
+title: "Untitled"
+author: "Untitled"
+date: "`r Sys.Date()`"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+# Load the package
+library(readxl)
+df <- read_excel("C:/Users/hp/Downloads/Stock_MLRAnalysis (1).xlsx")
+summary(df)
+```
+```{r}
+# Basic Statistics  
+summary_stats <- df %>% summarize(  
+mean(stock_return, na.rm = TRUE),  
+sd(stock_return, na.rm = TRUE),  
+Minimum = min(stock_return_scaled, na.rm = TRUE),  
+Maximum = max(stock_return_scaled, na.rm = TRUE)  
+)  
+summary_stats
+print(summary_stats) 
+
+```
+
+```{r}
+
+# Load required libraries  
+library(readxl)  # loading Excel files  
+library(ggplot2) # data visualization  
+library(dplyr)   # data manipulation  
+library(broom)   # tidying model outputs  
+library(stats)   # statistical tests  
+  
+```
+
+
+```{r}
+# Histogram for dependent variable  
+ggplot(df, aes(x = stock_return_scaled)) +  
+  geom_histogram(binwidth = 15, fill = 'blue', color = 'white') +  
+  labs(title = "Histogram of Scaled Stock Return",  
+       x = "Stock Return Scaled" , 
+       y = "Frequency of data")  
+```
+
+
+```{r}
+# T-test for mean equal to 300  
+t_test_result <- t.test(df$stock_return_scaled, mu = 300)  
+print(t_test_result) 
+```
+
+```{r}
+# Simple Linear Regression  
+sim_model <- lm(stock_return_scaled ~ dividend, data = df)  
+summary(sim_model)
+```
+```{r}
+# Extract and print linear model summary  
+sim_model_summary <- tidy(sim_model)  
+print(sim_model_summary) 
+mul_model <- lm(stock_return_scaled ~ ., data = df)  
+summary(mul_model) 
+
+```
+```{r}
+# Multiple Linear Regression  
+mul_model <- lm(stock_return_scaled ~ ., data = df)  
+summary(mul_model)
+```
+
+```{r}
+# Extract and print multiple model summary  
+mul_model_summary <- tidy(mul_model)  
+print(mul_model_summary)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
