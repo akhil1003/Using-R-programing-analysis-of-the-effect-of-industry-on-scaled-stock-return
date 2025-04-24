@@ -1,0 +1,1 @@
+# Using-R-programing-analysis-of-the-effect-of-industry-on-scaled-stock-return
